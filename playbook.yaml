@@ -1,20 +1,12 @@
 ---
-- name: Configurar Servidores Web
-  hosts: webservers
-  become: true
+- name: Playbook de prueba de conectividad
+  hosts: bastion
+  gather_facts: false
   tasks:
-    - name: Instalar Apache (httpd)
-      package:
-        name: httpd
-        state: present
+    - name: Hacer ping a 192.168.5.110
+      ansible.builtin.command: ping -c 4 192.168.5.110
+      register: resultado_ping
 
-    - name: Iniciar y habilitar Apache
-      service:
-        name: httpd
-        state: started
-        enabled: yes
-
-    - name: Crear pagina index.html
-      copy:
-        content: "<h1>Hola desde Ansible Automation Platform</h1>"
-        dest: /var/www/html/index.html
+    - name: Mostrar resultado del ping
+      ansible.builtin.debug:
+        var: resultado_ping.stdout
