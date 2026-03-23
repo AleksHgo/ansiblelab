@@ -4,7 +4,7 @@
   gather_facts: false
   tasks:
     - name: Hacer ping a 192.168.5.110
-      ansible.builtin.command: ping -c 4 192.168.5.110
+      ansible.builtin.command: ping  192.168.5.110
       register: resultado_ping
 
     - name: Mostrar resultado del ping
