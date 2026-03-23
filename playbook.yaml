@@ -1,5 +1,4 @@
 ---
-
 - name: Configurar Servidores Web
   hosts: webservers
   become: true
